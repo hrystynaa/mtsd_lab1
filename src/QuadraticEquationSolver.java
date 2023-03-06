@@ -1,6 +1,5 @@
-//package QuadraticEquationSolver;
-
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class QuadraticEquationSolver {
@@ -8,16 +7,48 @@ public class QuadraticEquationSolver {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
-        System.out.print("a = ");
-        double a = input.nextDouble();
-        System.out.print("b = ");
-        double b = input.nextDouble();
-        System.out.print("c = ");
-        double c = input.nextDouble();
+        double a, b, c;
+        ArrayList<Double> roots = new ArrayList<>();
+
+        while(true) {
+            System.out.print("a = ");
+            try {
+                a = input.nextDouble();
+                if (a == 0) {
+                    System.out.println("Error. Parameter a can't be a zero");
+                    continue;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Error. Expected a valid real number, got " + input.nextLine() + " instead");
+                continue;
+            }
+            break;
+        };
+
+        while (true) {
+            System.out.print("b = ");
+            try {
+                b = input.nextDouble();
+            } catch (InputMismatchException e) {
+                System.out.println("Error. Expected a valid real number, got " + input.nextLine() + " instead");
+                continue;
+            }
+            break;
+        };
+
+        while (true) {
+            System.out.print("c = ");
+            try {
+                c = input.nextDouble();
+            } catch (InputMismatchException e) {
+                System.out.println("Error. Expected a valid real number, got " + input.nextLine() + " instead");
+                continue;
+            }
+            break;
+        };
 
         System.out.println("Equation is: (" + a + ") x^2 + ("+ b +  ") + ("+  c + ") = 0");
 
-        ArrayList<Double> roots = new ArrayList<>();
         double discriminant = b * b - 4 * a * c;
 
         if (discriminant >= 0) {
